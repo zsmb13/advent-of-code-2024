@@ -1,21 +1,24 @@
+import kotlin.math.abs
+
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
-    }
-
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
-
-    // Test if implementation meets criteria from the description, like:
-    check(part1(listOf("test_input")) == 1)
-
-    // Or read a large test input from the `src/Day01_test.txt` file:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
-    // Read the input from the `src/Day01.txt` file.
     val input = readInput("Day01")
-    part1(input).println()
-    part2(input).println()
+
+    val left = mutableListOf<Int>()
+    val right = mutableListOf<Int>()
+    input.forEach {
+        val (l, r) = it.split("   ")
+        left += l.toInt()
+        right += r.toInt()
+    }
+
+    val result1 = left.sorted().zip(right.sorted())
+        .sumOf { (l, r) -> abs(l - r) }
+    check(result1 == 1834060)
+    println(result1)
+
+    val result2 = left.fold(0) { acc, i ->
+        acc + i * right.count { it == i }
+    }
+    check(result2 == 21607792)
+    println(result2)
 }
