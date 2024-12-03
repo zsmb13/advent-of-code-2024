@@ -19,6 +19,34 @@ fun main() {
                     (win.all { (x, y) -> x > y } || win.all { (x, y) -> x < y })
         }
     }
+
     println(safeCount2)
     check(safeCount2 == 601)
 }
+
+// Part 2
+//    val safeCount2 = reports.count { report ->
+//        var ascErrors = mutableListOf<Int>()
+//        var descErrors = mutableListOf<Int>()
+//
+//        var i = 0
+//        while (i < report.size - 1) {
+//            val x = report[i]
+//            val y = report[i + 1]
+//
+//            if (abs(x - y) !in 1..3) {
+//                ascErrors += y
+//                descErrors += y
+//            }
+//            if (x > y) {
+//                ascErrors += y
+//            }
+//            if (x < y) {
+//                descErrors += y
+//            }
+//
+//            i++
+//        }
+//
+//        ascErrors.size < 2 || descErrors.size < 2
+//    }
