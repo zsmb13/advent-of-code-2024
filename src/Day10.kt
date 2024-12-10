@@ -27,7 +27,6 @@ fun part1(input: List<String>): Int {
                 continue
             }
 
-            val visited = mutableSetOf(Position(x, y))
             val peaks = mutableSetOf<Position>()
 
             val toVisit = Position(x, y).neighbours()
@@ -36,17 +35,13 @@ fun part1(input: List<String>): Int {
 
             while (toVisit.isNotEmpty()) {
                 val current = toVisit.removeFirst()
-                visited += current
-
                 val currentValue = input[current]
                 if (currentValue == '9') {
                     peaks += current
                     continue
                 }
-
                 toVisit += current.neighbours()
                     .filter { input[it] - currentValue == 1 }
-                    .filter { it !in visited }
             }
 
             sum += peaks.size
